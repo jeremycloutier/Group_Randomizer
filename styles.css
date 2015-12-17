@@ -1,0 +1,23 @@
+body {
+
+
+}
+
+.numButton {
+	height: 40px;
+	width: 60px;
+	margin: 5px;
+}
+
+.active {
+	height: 40px;
+	width: 60px;
+	margin: 5px;
+	background-color: gray;
+
+}
+
+.studentgroup {
+	float: left;
+	margin: 15px;
+}
