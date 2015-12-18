@@ -1,12 +1,10 @@
 var theta = ["Altamir", "Anthony", "Brooks", "Charlie", "Chris", "Amber", "Kenzie", "Mark", "Joe", "Scott", "Matthew", "Natalie", "Eric", "Jeremy", "Nathan", "Robby", "Zach", "Sam", "Liz", "Paul"];
-var holderTheta = ["Altamir", "Anthony", "Brooks", "Charlie", "Chris", "Amber", "Kenzie", "Mark", "Joe", "Scott", "Matthew", "Natalie", "Eric", "Jeremy", "Nathan", "Robby", "Zach", "Sam", "Liz", "Paul"];
+console.log(theta.length);
 var buttonArray = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
-var groupNames = [];
-var randomTheta = [];
-var newArray = [];
+var randomArray = [];
 
 
-$(document).ready(function(){
+$(document).ready(function() {
 	appendButtons();
 
 	$(".numButton").on('click', function(){
@@ -15,9 +13,6 @@ $(document).ready(function(){
 	});
 
 	$("#refreshdiv").on('click', '.refresh', appendGroup);
-
-	randomizeArray();
-
 });
 
 
@@ -32,44 +27,43 @@ function appendButtons() {
 }
 
 
-function appendGroup(){
+function appendGroup() {
+	randomizeArray();
 
 	$("#group").empty();
-	groupNames = [];
 
-	var targetActive = $('.active').data('button-num');
+	var activeButton = $('.active').data('button-num');
 
-	for (var i = 1; i <= targetActive; i++){
-		$('#group').append("<div class='studentgroup' data-group-num=" + i + "><h4>Group " + i + "</h4></div>");
-	} 
+	for (var i = 1; i <= activeButton; i++){
+		$('#group').append("<div class='studentgroup' data-group-num=" + i + "><h4>Group " + i + "<div class='allStudents'></div></h4></div>");
+	}
 
-	$(".studentgroup").each(function(){
-		 groupNames.push($(this).data("group-num"));
-	});
+	var groupCounter = 0;
 
-	for (var j = 0; j < groupNames.length; j++) {
-		var $nel;
-		$(".studentgroup").each(function() {
-			if ($(this).data("group-num") == (j+1)) {
-				$nel = $(this);
-			}
-		});
+	for(var j=0; j<=randomArray.length-1; j++) {
+		$(".allStudents")
+			.eq(groupCounter)
+			.append("<p>" + randomArray[j] + "</p>").hide().fadeIn("slow");
 
-		for (var i = 0; i < (newArray.length / groupNames.length); i++) {
-			$nel.append("<p>" + newArray[i] + "</p>");
+		if(groupCounter == activeButton - 1) {
+			groupCounter = 0;
+		}
+		else {
+			groupCounter++;
 		}
 	}
 }
 
 function randomizeArray() {
-	
+	var holderTheta = theta.slice(0);
+	var placeHolder = [];
+	randomArray = [];
+
 	while(holderTheta.length != 0){
 		var ranNum = randomNumber(0, (holderTheta.length - 1));
-		randomTheta = holderTheta.splice(ranNum, 1)[0];
-		newArray.push(randomTheta);
-		console.log(newArray);
+		placeHolder = holderTheta.splice(ranNum, 1)[0];
+		randomArray.push(placeHolder);
 	}
-
 }
 	
 function randomNumber(min, max) {
