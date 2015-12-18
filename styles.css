@@ -1,6 +1,8 @@
 body {
-
-
+	background-color: #00acb0;
+	font-family: Helvetica, sans-serif;
+	color: white;
+	margin: 50px auto auto 50px;
 }
 
 .numButton {

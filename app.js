@@ -7,7 +7,6 @@ var newArray = [];
 
 
 $(document).ready(function(){
-	
 	appendButtons();
 
 	$(".numButton").on('click', function(){
@@ -48,16 +47,16 @@ function appendGroup(){
 		 groupNames.push($(this).data("group-num"));
 	});
 
-	for (var j = 1; j <= groupNames.length; j++) {
+	for (var j = 0; j < groupNames.length; j++) {
 		var $nel;
 		$(".studentgroup").each(function() {
-			if ($(this).data("group-num") == j) {
+			if ($(this).data("group-num") == (j+1)) {
 				$nel = $(this);
 			}
 		});
 
-		for (var i = 0; i < (theta.length / groupNames.length); i++) {
-			$nel.append("<p>" + theta[i] + "</p>");
+		for (var i = 0; i < (newArray.length / groupNames.length); i++) {
+			$nel.append("<p>" + newArray[i] + "</p>");
 		}
 	}
 }
@@ -69,7 +68,6 @@ function randomizeArray() {
 		randomTheta = holderTheta.splice(ranNum, 1)[0];
 		newArray.push(randomTheta);
 		console.log(newArray);
-
 	}
 
 }
